@@ -1,4 +1,5 @@
-require 'album'
+require_relative './album'
+
 class AlbumLibraryRepository
   def all
     albums = []
@@ -14,5 +15,18 @@ class AlbumLibraryRepository
       albums << album
     end
     return albums
+  end
+
+  def title
+    titles = []
+    sql = 'SELECT title FROM albums;'
+    result_set = DatabaseConnection.exec_params(sql, [])
+    result_set.each do |record|
+      title = Album.new
+      title.title = record['title']
+
+      titles << title
+    end
+    return titles
   end
 end
