@@ -1,0 +1,50 @@
+PART 1 - Class names 
+
+class bookstore #clarifies everything that is in the books.
+    attr_accessor :id, :title, :author_name
+end
+
+class BookStoreReposidtory #works with code and such to create like new entry etc
+    
+    def all
+        #show all books plus their information that's in the store.
+    end
+
+    def tiltes
+        #shows all the book titles in the stores
+    end
+
+    def authors 
+        #shows all the authors names in the store.  
+    end
+
+    #can add delete from database etc or insert.
+
+end
+
+PART 2 - Writing out the tests.
+
+repo = BookStoreReposidtory.new 
+expect(repo.all).to eq 5 #as there is 5 enters in the database.
+
+repo = BookStoreReposidtory.new
+expect(repo.authors).to eq "George Orwell", "Virginia Woolf", "Jane Austen", "Bram Stoker", "Edith Wharton"
+
+repo = BookStoreReposidtory.new
+expect(repo.titles).to eq "Nineteen Eighty-Four", "Mrs Dalloway", "Emma", "Dracula", "The Age of Innocence"
+
+PART 3 
+
+def reset_students_table
+    seed_sql = File.read('spec/seed.sql')
+    connection = PG.connect({ host: '127.0.0.1', dbname: 'book_store_test' })
+    connection.exec(seed_sql)
+  end
+  
+  describe BookStoreRepository do
+    before(:each) do 
+      reset_book_store_table
+    end
+  
+    # (your tests will go here).
+  end

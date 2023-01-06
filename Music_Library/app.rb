@@ -1,9 +1,9 @@
 require_relative 'lib/database_connection'      
-require_relative 'lib/album_library_repository'
-require_relative 'lib/album'
+require_relative 'lib/recipe_repo'
+require_relative 'lib/recipe'
 
 # We need to give the database name to the method `connect`.
-DatabaseConnection.connect('music_library')
+DatabaseConnection.connect('recipe_directory')
 
 #Perform a SQL query on the database and get the result set.
 #sql = 'SELECT id, title FROM albums;'
@@ -14,7 +14,8 @@ DatabaseConnection.connect('music_library')
 #   p record
 # end
 
-library = AlbumLibraryRepository.new
-library.title.each do |album|
-    p album.title
-end 
+library = Recipe_Repo.new
+
+library.all.each do |meal|
+    p "#{meal.meal}"
+end

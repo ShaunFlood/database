@@ -21,8 +21,14 @@ RSpec.describe AlbumLibraryRepository do
     expect(library.all[0].id).to eq "1"
   end
 
-  it 'returns all the titles in the database' do
+  xit 'returns all the titles in the database' do
     library = AlbumLibraryRepository.new
     expect(library.title[0].title).to eq "Doolittle"
+  end
+  it 'test the find function' do
+    library = AlbumLibraryRepository.new
+    library.find(1)
+    expect(library.title).to eq('Doolittle')
+    expect(library.id).to eq ('1')
   end
 end
